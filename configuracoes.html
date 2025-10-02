@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - TechCycle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="dashboard-container">
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="sidebar-modern" style="width: 280px;">
+            <div class="sidebar-brand">
+                <h3 class="text-primary">🔄 TechCycle</h3>
+                <small class="text-muted">Sistema de Gestão</small>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <i class="menu-icon fas fa-home"></i>
+                    Dashboard
+                </a>
+                <a href="novo-chamado.html" class="menu-item">
+                    <i class="menu-icon fas fa-plus-circle"></i>
+                    Novo Chamado
+                </a>
+                <a href="#" class="menu-item" onclick="abrirTodosChamados()">
+                    <i class="menu-icon fas fa-list"></i>
+                    Meus Chamados
+                </a>
+                <a href="relatorios.html" class="menu-item">
+                    <i class="menu-icon fas fa-chart-bar"></i>
+                    Relatórios
+                </a>
+                <a href="configuracoes.html" class="menu-item active">
+                    <i class="menu-icon fas fa-cog"></i>
+                    Configurações
+                </a>
+                
+                <!-- Divisória -->
+                <div class="menu-divider"></div>
+                
+                <a href="/" class="menu-item">
+                    <i class="menu-icon fas fa-sign-out-alt"></i>
+                    Sair
+                </a>
+            </div>
+            
+            <div class="mt-auto p-3">
+                <div class="text-center">
+                    <small class="text-muted">TechCycle v1.0</small>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Conteúdo Principal -->
+        <div class="flex-grow-1">
+            <!-- Header -->
+            <header class="header-modern">
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-primary me-3 d-md-none" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h4 class="mb-0">Configurações do Sistema</h4>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-menu-container">
+                        <div class="dropdown">
+                            <button class="user-menu dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="fas fa-user"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Perfil</a></li>
+                                <li><a class="dropdown-item" href="configuracoes.html"><i class="fas fa-cog me-2"></i>Configurações</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="/login"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Conteúdo -->
+            <main class="p-4">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Perfil do Usuário -->
+                        <div class="form-modern fade-in mb-4">
+                            <h5 class="text-primary mb-4">
+                                <i class="fas fa-user me-2"></i>Perfil do Usuário
+                            </h5>
+                            
+                            <form id="perfilForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nome Completo</label>
+                                        <input type="text" class="form-control" id="nome" value="Administrador" required>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" value="admin@techcycle.com" required>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label class="form-label">Departamento</label>
+                                        <select class="form-control" id="departamento">
+                                            <option value="TI" selected>Tecnologia da Informação</option>
+                                            <option value="RH">Recursos Humanos</option>
+                                            <option value="Financeiro">Financeiro</option>
+                                            <option value="Operações">Operações</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label class="form-label">Cargo</label>
+                                        <input type="text" class="form-control" id="cargo" value="Analista de Sistemas">
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <label class="form-label">Foto de Perfil</label>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-menu me-3">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <input type="file" class="form-control" id="fotoPerfil" accept="image/*">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-modern">
+                                            <i class="fas fa-save me-2"></i>Salvar Alterações
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Configurações do Sistema -->
+                        <div class="form-modern fade-in mb-4">
+                            <h5 class="text-primary mb-4">
+                                <i class="fas fa-cog me-2"></i>Configurações do Sistema
+                            </h5>
+                            
+                            <form id="sistemaForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nome da Empresa</label>
+                                        <input type="text" class="form-control" id="empresa" value="TechCycle Solutions">
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label class="form-label">Tempo de Sessão (minutos)</label>
+                                        <input type="number" class="form-control" id="sessao" value="30" min="5" max="240">
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <label class="form-label">Notificações</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="notificacoesEmail" checked>
+                                            <label class="form-check-label" for="notificacoesEmail">
+                                                Receber notificações por email
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="notificacoesPush" checked>
+                                            <label class="form-check-label" for="notificacoesPush">
+                                                Notificações push no sistema
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <label class="form-label">Tema do Sistema</label>
+                                        <select class="form-control" id="tema">
+                                            <option value="escuro" selected>Escuro</option>
+                                            <option value="claro">Claro</option>
+                                            <option value="auto">Automático</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-modern">
+                                            <i class="fas fa-save me-2"></i>Salvar Configurações
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <!-- Ações Rápidas -->
+                        <div class="form-modern fade-in mb-4">
+                            <h5 class="text-primary mb-4">
+                                <i class="fas fa-bolt me-2"></i>Ações Rápidas
+                            </h5>
+                            
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-primary" onclick="exportarDados()">
+                                    <i class="fas fa-download me-2"></i>Exportar Dados
+                                </button>
+                                <button class="btn btn-outline-warning" onclick="fazerBackup()">
+                                    <i class="fas fa-database me-2"></i>Fazer Backup
+                                </button>
+                                <button class="btn btn-outline-info" onclick="limparCache()">
+                                    <i class="fas fa-broom me-2"></i>Limpar Cache
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="redefinirSistema()">
+                                    <i class="fas fa-redo me-2"></i>Redefinir Sistema
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Informações do Sistema -->
+                        <div class="form-modern fade-in">
+                            <h5 class="text-primary mb-4">
+                                <i class="fas fa-info-circle me-2"></i>Informações
+                            </h5>
+                            
+                            <div class="system-info">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Versão:</span>
+                                    <strong>v1.0.0</strong>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Última Atualização:</span>
+                                    <strong>15/01/2024</strong>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Chamados Totais:</span>
+                                    <strong id="totalChamadosInfo">0</strong>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Usuários Ativos:</span>
+                                    <strong>1</strong>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Espaço em Disco:</span>
+                                    <strong>2.3 GB / 10 GB</strong>
+                                </div>
+                                
+                                <div class="progress mt-3" style="height: 8px;">
+                                    <div class="progress-bar bg-primary" style="width: 23%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("🚀 Inicializando Configurações...");
+            carregarInformacoesSistema();
+        });
+
+        // Toggle sidebar mobile
+        function toggleSidebar() {
+            document.querySelector('.sidebar-modern').classList.toggle('active');
+        }
+
+        // Carregar informações do sistema
+        async function carregarInformacoesSistema() {
+            try {
+                const res = await fetch('/estatisticas');
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('totalChamadosInfo').textContent = data.total;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar informações:', error);
+            }
+        }
+
+        // Formulário de perfil
+        document.getElementById('perfilForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Salvando...';
+                btn.disabled = true;
+
+                // Simular salvamento
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                alert('✅ Perfil atualizado com sucesso!');
+                
+            } catch (error) {
+                console.error('❌ Erro:', error);
+                alert('❌ Erro ao salvar perfil');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Formulário do sistema
+        document.getElementById('sistemaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Salvando...';
+                btn.disabled = true;
+
+                // Simular salvamento
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                alert('✅ Configurações salvas com sucesso!');
+                
+            } catch (error) {
+                console.error('❌ Erro:', error);
+                alert('❌ Erro ao salvar configurações');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Funções de ações rápidas
+        function exportarDados() {
+            if (confirm('📊 Deseja exportar todos os dados do sistema?')) {
+                alert('✅ Exportação iniciada. Você receberá um email com o arquivo.');
+            }
+        }
+
+        function fazerBackup() {
+            if (confirm('💾 Deseja fazer backup do sistema?')) {
+                alert('✅ Backup iniciado. Esta operação pode levar alguns minutos.');
+            }
+        }
+
+        function limparCache() {
+            if (confirm('🧹 Deseja limpar o cache do sistema?')) {
+                alert('✅ Cache limpo com sucesso!');
+            }
+        }
+
+        function redefinirSistema() {
+            if (confirm('⚠️ ATENÇÃO: Esta ação irá redefinir todas as configurações para os padrões de fábrica. Deseja continuar?')) {
+                if (confirm('❌ CONFIRMAÇÃO FINAL: Esta ação não pode ser desfeita. Tem certeza?')) {
+                    alert('✅ Sistema redefinido. Reinicie a aplicação.');
+                }
+            }
+        }
+
+        // Função para compatibilidade
+        async function abrirTodosChamados() {
+            window.location.href = 'dashboard.html#todos-chamados';
+        }
+    </script>
+</body>
+</html>
